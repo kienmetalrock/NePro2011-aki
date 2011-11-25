@@ -1,12 +1,7 @@
 #include <stdio.h>
 
-<<<<<<< HEAD
 int main(){
-	return 0;
-=======
-
-int main(){
-  fprintf("nepro");
+  fprintf(stdout, "nepro");
+  fprintf(stdout, "Cong hoa xa hoi chu nghia Viet Nam");
   return 0;
->>>>>>> 2a6743d9e601954f6638eb4dc40b487145166df9
 }
