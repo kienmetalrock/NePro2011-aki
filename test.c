@@ -1,3 +1,3 @@
 #include <iostream>
 
-vim ngu dan
+git ngu dan
