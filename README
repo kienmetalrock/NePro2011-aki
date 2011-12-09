@@ -1,0 +1,66 @@
+Value Proposition:
+    - A fun game which you can play with friend
+    
+Relative work:
+    Touch the number
+        - Iphone game
+        - One player game
+        - Touch the number by ascending order as fast as you can to get more score
+    
+Evaluation:
+    - Demo the multicast
+    - Demo game between two player
+    
+Team Member
+Tien [T]
+Kien [K]
+
+Schedule:
+    - Order to do
+        + the multicats part to broadcast a hosted game [T]
+            - Server
+            - Client
+            - Test                                      [T] [K]
+        + Network prototcol                             [T] [K]
+            - Server
+            - Client
+            - Test                                      [T] [K]
+        + Server processing part						[T] [K]
+        + UI desgin										[K]
+            - Test										[T] [K]
+        + Merge UI part and network part				[T] [K]
+            -Test
+    - Risk
+
+Plan for SCM (source code management):
+    - Use git
+    - Use github as resposity
+    
+
+================== SCHEDULE ===================
+    
+12/9:   completed proposal
+12/17:  document describing network protocol
+12/23:  basic network connection running (if necessary, multiple sockets using select())
+12/30:  all protocol commands dummied
+1/6:    backend server commands implemented
+1/13:   UI finish
+1/20:   Presentation
+
+================== SUBMIT ======================
+
+Source code
+    Comment in English
+    Submit SCM
+    Demo
+    
+Report
+    What
+    How
+    Why it cool
+    What is solved
+    Network protocol
+        - Error message
+        
+    Execution enviroment
+    Description of teamwork
