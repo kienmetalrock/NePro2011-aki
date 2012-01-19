@@ -1,5 +1,13 @@
 #include "support.h"
  
+
+	
+G_MODULE_EXPORT void
+on_b1_click(char *newname, GtkButton *button){
+	gtk_button_set_label(button,newname);
+}
+	
+	
 G_MODULE_EXPORT gboolean
 cb_expose_chart( GtkWidget      *widget,
                  GdkEventExpose *event,
