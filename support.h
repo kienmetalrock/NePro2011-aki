@@ -20,7 +20,8 @@ struct _ChData
 						*host_window,			/* Host window */
 						*join_window,			/* Join window */
 						*ready_window,		/* Ready window */
-						*playing_window;	/* Playing window */
+						*playing_window,	/* Playing window */
+						*ready_p2;					/* ready window of player 2 */ 
 		/* Button */
 	GtkWidget	*menu_host,				/* host button on menu window */
 						*menu_join,				/* join button on menu window */
@@ -30,6 +31,12 @@ struct _ChData
 						*ready_start,			/* start button on ready window */	
 						*ready_cancel,			/* quit button on ready window */
 						*playing_quit;     /* quit button on playing window */
+	
+	GtkWidget *host_board,     /* host number board */
+						*ready_board,		/* player1 ready number board */
+						*ready2_board,  /* player2 ready number board */
+						*playing_board;	/* playing number board */
+
 };
 
 #endif /* __SUPPORT_H__ */
