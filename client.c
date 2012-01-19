@@ -22,12 +22,14 @@
 #define MSG_HOST            10
 #define MSG_JOIN            11
 #define MSG_BOARD           12
+#define MSG_ACCEPT          13          
 
 #define WAIT_FOR_BOARD      100
 #define WAIT_FOR_PLAYER     101
 #define READY_TO_PLAY       102
 #define WAIT_FOR_GAMELIST   103
 #define WAIT_TO_PLAY        104
+#define WAIT_FOR_ACCEPT     105
 
 typedef struct {
     int message_id;    // type of message, define upper
@@ -96,7 +98,7 @@ void chat(int s){
                     memset(tmp, 0, MAX_BUFF);
                     n = encode_message(buff, MSG_HOST, tmp);
                     write(s, buff, n);
-                    gamephase = WAIT_FOR_PLAYER;
+                    gamephase = WAIT_FOR_ACCEPT;
                     break;
                 case 'j':
                     /* send join game message */
@@ -130,6 +132,12 @@ void chat(int s){
                     }
                     break;
                 /* a player has joined game */
+                case MSG_ACCEPT:
+                    if (gamephase == WAIT_FOR_ACCEPT) {
+                        fprintf(stdout, "Host game successfully!\n");
+                        gamephase = WAIT_FOR_PLAYER;
+                    }
+                    break;
                 case MSG_PLAYERJOIN:
                     if (gamephase == WAIT_FOR_PLAYER) {
                         fprintf(stdout, "Player joined. Send board now.\n");

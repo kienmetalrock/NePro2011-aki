@@ -22,6 +22,7 @@
 #define MSG_HOST            10
 #define MSG_JOIN            11
 #define MSG_BOARD           12
+#define MSG_ACCEPT          13          
 
 typedef struct {
     int message_id;    // type of message, define upper
@@ -155,6 +156,10 @@ int main(int argc, char* argv[]){
                                 fprintf(stdout, "Player %d host game.\n", i);
                                 /* Set client i to hosting */
                                 client[i] = 0;
+                                /* Send accept message to hosting player*/
+                                memset(tmp, 0, MAX_BUFF);
+                                n = encode_message(buff, MSG_ACCEPT, tmp);
+                                write(i, buff, n);
                                 break;
                             case MSG_JOIN:
                                 fprintf(stdout, "Player %d want join a game. Send game list.\n", i);
