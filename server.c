@@ -139,11 +139,24 @@ int main(int argc, char* argv[]){
                     if (n == 0) {
                         fprintf(stderr, "Disconnect client fd = %d\n", i);
                         FD_CLR(i, &fds_backup);
+                        if (client[i] > 0) {
+                            memset(tmp, 0, MAX_BUFF);
+                            n = encode_message(buff, MSG_QUIT, tmp);
+                            write(client[i], buff, n);
+                        }
+                        client[i] = -2;
                         close(i);
                         break;
                     } else if (n < 0) {
                         perror("read() error ");
-                        exit(1);
+                        FD_CLR(i, &fds_backup);
+                        if (client[i] > 0) {
+                            memset(tmp, 0, MAX_BUFF);
+                            n = encode_message(buff, MSG_QUIT, tmp);
+                            write(client[i], buff, n);
+                        }
+                        client[i] = -2;
+                        close(i);
                     } else {
                         /* Code handle client data */
                         toreceive = (msg *) malloc(sizeof(msg));
