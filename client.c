@@ -319,7 +319,7 @@ void *updatethread(){
     while (IsRunning) {
         sleep(0.01);
         if (myScore + yourScore == 25) {
-            if (myScore > yourScore) fprintf(stdout, "You win !\n");
+            if (myScore < yourScore) fprintf(stdout, "You win !\n");
             else fprintf(stdout, "You lose !\n");
             IsRunning = 0;
             exit(0);
@@ -404,5 +404,5 @@ void print_board(){
     fprintf(stdout, "\033[01;37m\n");
 		if (state ==0) fprintf(stdout, "YOUR COLORS: \033[01;34m BLUE\n");
 		else fprintf (stdout, "YOUR COLORS: \033[01;31m RED\n");
-    fprintf(stdout, "NEXT: %d\n", NextNumber);
+    if (stat[4][4]==0) fprintf(stdout, "NEXT: %d\n", NextNumber);
 }
