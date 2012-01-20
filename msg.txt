@@ -1,0 +1,33 @@
+
+                    ID      Length  Buff                        Memo
+------------------------------------------------------------------------------------
+MSG_PLAYERJOIN      1       0
+MSG_DISCONNECT      2       0
+MSG_REFUSE          3       0
+MSG_GAMELIST        4               Game X 1/2\nGame Y 2/2      (X, Y = id of creator)
+MSG_CHOSEGAME       5           4   X                           (X = id of creator) (4 character)
+MSG_READY           6       0           
+MSG_TOUCH           7       4 + ts  Number  + Timestamp         Timestamp is milisecond from start game
+MSG_START           8       
+MSG_QUIT            9
+MSG_HOST            10      0       
+MSG_JOIN            11      0
+MSG_BOARD           12      25 x 2  Map data by row 010212...25
+
+
+HOST -> PLAYERJOIN -> BOARD -> START (IF READY) -> TOUCH
+
+JOIN -> GAMELIST -> CHOSEGAME -> BOARD -> READY -> TOUCH (IF START)
+
+
+Game Phase
+
+WAIT_FOR_BOARD      100
+WAIT_FOR_PLAYER     101
+READY_TO_PLAY       102
+
+
+
+
+
+

@@ -1,0 +1,14 @@
+send a structure ?
+typedef structure {
+    int id;         // the socket id of client or server
+    int message;    // type of message, define below
+    int number;     // 
+}
+//Define message
+1   MSG_CONNECT
+2   MSG_DISCONNECT
+3   MSG_REFUSE
+4   MSG_TOUCH
+5   MSG_START
+6   MSG_QUIT
+

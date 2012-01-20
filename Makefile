@@ -7,7 +7,12 @@ OBJECTS = main.o callbacks.o
 
 .PHONY: clean
 
-all: main
+all: main server
+
+server: server.o
+	gcc -o server server.o
+server.o: server.c
+	gcc -c server.c
 
 main: $(OBJECTS)
 	$(CC) $(DEBUG) $(LIBS) $(OBJECTS) -o $@
@@ -19,5 +24,5 @@ callbacks.o: callbacks.c support.h
 	$(CC) $(DEBUG) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f *.o main
+	rm *.o
 
