@@ -387,22 +387,24 @@ int decode_message(msg * output, char * inbuff, int n){
 
 void print_board(){
     int i, j;
+		fprintf(stdout,"+---+---+---+---+---+\n");
     for (i=0; i<5; i++) {
+						fprintf(stdout, "| ");
         for (j=0; j<5; j++) {
 						if (state ==1){
-            if (stat[i][j] < 0) fprintf(stdout, "\033[01;31m%-2d ", board[i][j]);
-            else if (stat[i][j] > 0) fprintf(stdout, "\033[22;34m%-2d ", board[i][j]);
-            else fprintf(stdout, "\033[01;37m%-2d ", board[i][j]);
+            if (stat[i][j] < 0) fprintf(stdout, "\033[01;31m%-2d\033[01;37m| ", board[i][j]);
+            else if (stat[i][j] > 0) fprintf(stdout, "\033[22;34m%-2d\033[01;37m| ", board[i][j]);
+            else fprintf(stdout, "\033[01;37m%-2d| ", board[i][j]);
 						} else if (state ==0) {
-						if (stat[i][j] > 0) fprintf(stdout, "\033[01;31m%-2d ", board[i][j]);
-						else if (stat[i][j] < 0) fprintf(stdout, "\033[22;34m%-2d ", board[i][j]);
-						else fprintf(stdout, "\033[01;37m%-2d ", board[i][j]);
+						if (stat[i][j] > 0) fprintf(stdout, "\033[01;31m%-2d\033[01;37m| ", board[i][j]);
+						else if (stat[i][j] < 0) fprintf(stdout, "\033[22;34m%-2d\033[01;37m| ", board[i][j]);
+						else fprintf(stdout, "\033[01;37m%-2d| ", board[i][j]);
 						}
         }
-        fprintf(stdout, "\n");
+        fprintf(stdout, "\n+---+---+---+---+---+\n");
     }
     fprintf(stdout, "\033[01;37m\n");
-		if (state ==0) fprintf(stdout, "YOUR COLORS: \033[01;34m BLUE\n");
-		else fprintf (stdout, "YOUR COLORS: \033[01;31m RED\n");
-    if (stat[4][4]==0) fprintf(stdout, "NEXT: %d\n", NextNumber);
+		if (state ==0) fprintf(stdout, "YOUR COLORS: \033[01;34m BLUE\033[01;37m\n");
+		else fprintf (stdout, "YOUR COLORS: \033[01;31m RED\033[01;37m\n");
+    if (NextNumber <=25) fprintf(stdout, "NEXT: %d\n", NextNumber);
 }
