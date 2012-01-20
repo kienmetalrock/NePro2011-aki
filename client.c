@@ -55,6 +55,10 @@ int IsRunning = 1;
 int myScore = 0;
 int yourScore = 0;
 
+
+int state =  -1;
+
+
 int main(int argc, char* argv[]){
 	int error, socketfd, i, j;
 	struct addrinfo hints;
@@ -272,6 +276,7 @@ void play(int s){
                     }
                     break;
                 case MSG_READY:
+										state=0;
                     if (gamephase == WAIT_TO_PLAY) {
                         n = encode_message(buff, MSG_START, tmp);
                         write(s, buff, n);
@@ -283,6 +288,7 @@ void play(int s){
                     }
                     break;
                 case MSG_START:
+										state=1;
                     fprintf(stdout, "Start !!!\n");
                     pthread_create(&update_thread, NULL, updatethread, NULL);
                     time(&start);
@@ -383,12 +389,20 @@ void print_board(){
     int i, j;
     for (i=0; i<5; i++) {
         for (j=0; j<5; j++) {
-            if (stat[i][j] < 0) fprintf(stdout, "\033[01;33m%-2d ", board[i][j]);
+						if (state ==1){
+            if (stat[i][j] < 0) fprintf(stdout, "\033[01;31m%-2d ", board[i][j]);
             else if (stat[i][j] > 0) fprintf(stdout, "\033[22;34m%-2d ", board[i][j]);
             else fprintf(stdout, "\033[01;37m%-2d ", board[i][j]);
+						} else if (state ==0) {
+						if (stat[i][j] > 0) fprintf(stdout, "\033[01;31m%-2d ", board[i][j]);
+						else if (stat[i][j] < 0) fprintf(stdout, "\033[22;34m%-2d ", board[i][j]);
+						else fprintf(stdout, "\033[01;37m%-2d ", board[i][j]);
+						}
         }
         fprintf(stdout, "\n");
     }
     fprintf(stdout, "\033[01;37m\n");
-    fprintf(stdout, "Next = %d\n", NextNumber);
+		if (state ==0) fprintf(stdout, "YOUR COLORS: \033[01;34m BLUE\n");
+		else fprintf (stdout, "YOUR COLORS: \033[01;31m RED\n");
+    fprintf(stdout, "NEXT: %d\n", NextNumber);
 }
